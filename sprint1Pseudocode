@@ -1,0 +1,11 @@
+Start
+Create a dictionary of coin values
+Split the input sentence by " and "
+For each part:
+    Split into quantity and coin name
+    Convert quantity to integer
+    Look up coin value from dictionary
+    Multiply and add to total
+Round the total to 2 decimal places
+Return the total as a string
+End
