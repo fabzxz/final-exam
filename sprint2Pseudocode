@@ -1,0 +1,13 @@
+Start
+Create a dictionary of coin values (singular and plural keys)
+Split the input sentence by " and "
+For each part:
+    Split into quantity and coin name
+    Convert quantity to integer
+    Normalize coin name to singular form
+    Look up coin value from dictionary
+    Multiply and add to total
+If a coin isnt recognized, skip it
+Round the total to 2 decimal places
+Return the total as a string
+End
