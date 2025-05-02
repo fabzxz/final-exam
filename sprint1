@@ -1,27 +1,27 @@
-def convert_to_dollars(sentence):
-    # Basic coin value dictionary
-    coin_values = {
-        "penny": 0.01,
-        "nickel": 0.05,
-        "dime": 0.10,
-        "quarter": 0.25
-    }
+# Define coin values in dollars
+coin_values = {
+    "penny": 0.01,
+    "pennies": 0.01,
+    "nickel": 0.05,
+    "nickels": 0.05,
+    "dime": 0.10,
+    "dimes": 0.10,
+    "quarter": 0.25,
+    "quarters": 0.25
+}
 
-    # Assume format like "1 penny and 2 nickels"
+def convert_to_dollars(sentence):
     parts = sentence.split(" and ")
     total = 0.0
 
     for part in parts:
-        tokens = part.split()
+        tokens = part.strip().split()
         if len(tokens) == 2:
             quantity = int(tokens[0])
-            coin = tokens[1]
-            # Doesn't handle plurals or errors
-            value = coin_values.get(coin, 0)
-            total += quantity * value
+            coin = tokens[1].lower()
+            if coin in coin_values:
+                total += quantity * coin_values[coin]
+    return f"{total:.2f}"
 
-    return str(round(total, 2))
-
-# Example usage
-if __name__ == "__main__":
-    print(convert_to_dollars("4 dime and 7 quarter "))  # Expected: 0.11
+# Example usage with test case
+print(convert_to_dollars("1 penny and 2 nickels"))  # Output: 0.11
