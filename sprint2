@@ -1,0 +1,31 @@
+def convert_to_dollars(sentence):
+    # Coin values including plural forms
+    coin_values = {
+        "penny": 0.01, "pennies": 0.01,
+        "nickel": 0.05, "nickels": 0.05,
+        "dime": 0.10, "dimes": 0.10,
+        "quarter": 0.25, "quarters": 0.25
+    }
+
+    parts = sentence.lower().split(" and ")
+    total = 0.0
+
+    for part in parts:
+        tokens = part.strip().split()
+        if len(tokens) == 2:
+            try:
+                quantity = int(tokens[0])
+                coin = tokens[1]
+                value = coin_values.get(coin)
+                if value is not None:
+                    total += quantity * value
+                else:
+                    print(f"Warning: Unknown coin '{coin}' ignored.")
+            except ValueError:
+                print(f"Warning: Could not parse quantity '{tokens[0]}'")
+
+    return str(round(total, 2))
+
+# Example usage
+if __name__ == "__main__":
+    print(convert_to_dollars("	1 dime and 1 nickel and 1 penny and 1 quarter   "))
